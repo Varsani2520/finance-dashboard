@@ -8,7 +8,7 @@ import Link from '@mui/material/Link';
 
 export default function BasicBreadcrumbs() {
   return (
-    <div role="presentation"  style={{margin:'40px'}}>
+    <div role="presentation"  style={{padding:'40px'}}>
       <Breadcrumbs aria-label="breadcrumb">
         <Link underline="hover" color="black" href="/#">
           Pages
