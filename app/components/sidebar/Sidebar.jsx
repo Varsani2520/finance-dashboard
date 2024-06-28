@@ -53,7 +53,7 @@ const Sidebar = () => {
   return (
     <ThemeProvider theme={theme}>
       <CssBaseline />
-      <Box className="h-screen border-r">
+      <Box sx={{display: {xs: "none", md: "block"}}} className="h-screen border-r">
         <Box className="flex items-center justify-between p-4">
           <span className="text-lg font-bold">Finance Dashboard</span>
           <IconButton onClick={handleThemeChange}>
@@ -66,7 +66,7 @@ const Sidebar = () => {
               <ListItem
                 button
                 onClick={() => setActiveItem(item.name)}
-                className={`p-4 rounded-lg hover:bg-teal-600 my-2 ${
+                className={`p-4 rounded-lg hover:bg-teal-300 my-2 ${
                   activeItem === item.name ? "bg-teal-500" : "bg-transparent"
                 }`}
               >
