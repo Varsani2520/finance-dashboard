@@ -71,7 +71,7 @@ const Page = () => {
                       {symbols[index]}
                     </Typography>
                     <Typography variant="h6" className="mt-2">
-                      ${stock.c}
+                      ${stock && stock.c}
                     </Typography>
                     <Typography
                       variant="body2"
