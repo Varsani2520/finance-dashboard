@@ -1,7 +1,7 @@
 // utils/fetchStockData.js
 import axios from "axios";
+import { API_KEY } from "../config/config";
 
-const API_KEY = "cpv56j1r01qhmauru3n0cpv56j1r01qhmauru3ng";
 const BASE_URL = "https://finnhub.io/api/v1";
 
 export const fetchStockData = async (symbol) => {
