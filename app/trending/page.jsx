@@ -86,18 +86,22 @@ const Page = () => {
           </Grid>
         )}
       </Box>
-      <TableDataStocks />
+      <Box p={{ xs: 0, md: 4 }}>
+        <TableDataStocks />
+      </Box>
     </>
   );
 };
 
-export const TableDataStocks = () => {
+export const TableDataStocks = ({ isHome }) => {
   const [stockData, setStockData] = useState([]);
   const [loading, setLoading] = useState(true);
 
   const getStockData = async () => {
     setLoading(true);
-    const promises = symbols.map((symbol) => fetchStockData(symbol));
+    const promises = isHome
+      ? symbols.slice(0, 5).map((symbol) => fetchStockData(symbol))
+      : symbols.map((symbol) => fetchStockData(symbol));
     const data = await Promise.all(promises);
     setStockData(data);
     setLoading(false);
@@ -115,12 +119,32 @@ export const TableDataStocks = () => {
   return (
     <TableContainer component={Paper} className="mt-8">
       <Table>
-        <TableHead >
-          <TableRow >
-            <TableCell align="left" style={{color:"gray",fontWeight:'bold'}}>Name</TableCell>
-            <TableCell align="right" style={{color:"gray",fontWeight:'bold'}}>Price</TableCell>
-            <TableCell align="right" style={{color:"gray",fontWeight:'bold'}}>Change</TableCell>
-            <TableCell align="right" style={{color:"gray",fontWeight:'bold'}}>Change %</TableCell>
+        <TableHead>
+          <TableRow>
+            <TableCell
+              align="left"
+              style={{ color: "gray", fontWeight: "bold" }}
+            >
+              Name
+            </TableCell>
+            <TableCell
+              align="right"
+              style={{ color: "gray", fontWeight: "bold" }}
+            >
+              Price
+            </TableCell>
+            <TableCell
+              align="right"
+              style={{ color: "gray", fontWeight: "bold" }}
+            >
+              Change
+            </TableCell>
+            <TableCell
+              align="right"
+              style={{ color: "gray", fontWeight: "bold" }}
+            >
+              Change %
+            </TableCell>
           </TableRow>
         </TableHead>
         <TableBody>
@@ -136,9 +160,7 @@ export const TableDataStocks = () => {
               </TableCell>
               <TableCell
                 align="right"
-                className={
-                  stock.dp >= 0 ? "text-green-500" : "text-red-500"
-                }
+                className={stock.dp >= 0 ? "text-green-500" : "text-red-500"}
               >
                 {stock.dp}%
               </TableCell>
@@ -147,7 +169,6 @@ export const TableDataStocks = () => {
         </TableBody>
       </Table>
     </TableContainer>
-
-  )
-}
+  );
+};
 export default Page;
