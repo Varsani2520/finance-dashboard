@@ -6,7 +6,7 @@ import Link from '@mui/material/Link';
 
 
 
-export default function BasicBreadcrumbs() {
+export default function BasicBreadcrumbs({title, route}) {
   return (
     <div role="presentation"  style={{padding:'40px'}}>
       <Breadcrumbs aria-label="breadcrumb">
@@ -16,12 +16,12 @@ export default function BasicBreadcrumbs() {
         <Link
           underline="hover"
           color="black"
-          href="/#"
+          href={`/${route === 'main-dashboard' ? '/' : route}`}
         >
-          Main Dashboard
+         {route}
         </Link>
       </Breadcrumbs>
-        <Typography color="text.primary" style={{fontSize:"34px",fontWeight:'bold'}}>Main Dashboard</Typography>
+        <Typography color="text.primary" style={{fontSize:"34px",fontWeight:'bold'}}>{title}</Typography>
     </div>
   );
 }

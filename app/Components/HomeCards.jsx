@@ -5,7 +5,7 @@ import { MonetizationOn, AttachMoney, ShoppingCart, AccountBalance } from '@mui/
 
 const cardData = [
   { name: 'Earning', price: '$5000', icon: <MonetizationOn/> },
-  { name: 'Stipend this Month', price: '$1500', icon: <AttachMoney /> },
+  { name: 'Spend', price: '$1500', icon: <AttachMoney /> },
   { name: 'Sales', price: '$3000', icon: <ShoppingCart /> },
   { name: 'Your Balance', price: '$7000', icon: <AccountBalance /> }
 ];
