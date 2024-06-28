@@ -16,7 +16,7 @@ import {
   Grid,
 } from "@mui/material";
 import { fetchStockData } from "../utils/fetchStockData";
-import BasicBreadcrumbs from "../components/Headers";
+import BasicBreadcrumbs from "../Components/Dashboard/Headers";
 
 const symbols = [
   "AAPL",
@@ -85,43 +85,69 @@ const Page = () => {
             ))}
           </Grid>
         )}
-        <TableContainer component={Paper} className="mt-8">
-          <Table>
-            <TableHead className="bg-gray-100">
-              <TableRow>
-                <TableCell>Symbol</TableCell>
-                <TableCell align="right">Price</TableCell>
-                <TableCell align="right">Change</TableCell>
-                <TableCell align="right">Change %</TableCell>
-              </TableRow>
-            </TableHead>
-            <TableBody>
-              {stockData.map((stock, index) => (
-                <TableRow key={index}>
-                  <TableCell>{symbols[index]}</TableCell>
-                  <TableCell align="right">${stock.c}</TableCell>
-                  <TableCell
-                    align="right"
-                    className={stock.d >= 0 ? "text-green-500" : "text-red-500"}
-                  >
-                    {stock.d >= 0 ? `+${stock.d}` : stock.d}
-                  </TableCell>
-                  <TableCell
-                    align="right"
-                    className={
-                      stock.dp >= 0 ? "text-green-500" : "text-red-500"
-                    }
-                  >
-                    {stock.dp}%
-                  </TableCell>
-                </TableRow>
-              ))}
-            </TableBody>
-          </Table>
-        </TableContainer>
       </Box>
+      <TableDataStocks />
     </>
   );
 };
 
+export const TableDataStocks = () => {
+  const [stockData, setStockData] = useState([]);
+  const [loading, setLoading] = useState(true);
+
+  const getStockData = async () => {
+    setLoading(true);
+    const promises = symbols.map((symbol) => fetchStockData(symbol));
+    const data = await Promise.all(promises);
+    setStockData(data);
+    setLoading(false);
+  };
+
+  useEffect(() => {
+    getStockData(); // Initial fetch
+
+    const interval = setInterval(() => {
+      getStockData(); // Fetch data periodically
+    }, 60000); // Fetch every minute (adjust as needed)
+
+    return () => clearInterval(interval); // Cleanup on unmount
+  }, []);
+  return (
+    <TableContainer component={Paper} className="mt-8">
+      <Table>
+        <TableHead >
+          <TableRow >
+            <TableCell align="left" style={{color:"gray",fontWeight:'bold'}}>Name</TableCell>
+            <TableCell align="right" style={{color:"gray",fontWeight:'bold'}}>Price</TableCell>
+            <TableCell align="right" style={{color:"gray",fontWeight:'bold'}}>Change</TableCell>
+            <TableCell align="right" style={{color:"gray",fontWeight:'bold'}}>Change %</TableCell>
+          </TableRow>
+        </TableHead>
+        <TableBody>
+          {stockData.map((stock, index) => (
+            <TableRow key={index}>
+              <TableCell>{symbols[index]}</TableCell>
+              <TableCell align="right">${stock.c}</TableCell>
+              <TableCell
+                align="right"
+                className={stock.d >= 0 ? "text-green-500" : "text-red-500"}
+              >
+                {stock.d >= 0 ? `+${stock.d}` : stock.d}
+              </TableCell>
+              <TableCell
+                align="right"
+                className={
+                  stock.dp >= 0 ? "text-green-500" : "text-red-500"
+                }
+              >
+                {stock.dp}%
+              </TableCell>
+            </TableRow>
+          ))}
+        </TableBody>
+      </Table>
+    </TableContainer>
+
+  )
+}
 export default Page;

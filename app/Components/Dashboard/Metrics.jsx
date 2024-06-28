@@ -23,7 +23,7 @@ const barData = [
   { name: '23', uv: 3490, pv: 4300, amt: 2100 },
 ];
 
-export default function Metrics() {
+export default function Metrics({title}) {
   return (
     <Box sx={{ flexGrow: 1, p: 3 }}>
       <Grid container spacing={3}>
@@ -32,7 +32,7 @@ export default function Metrics() {
           <Card sx={{ backgroundColor: 'white', borderRadius: 2 }}>
             <CardContent>
               <Box sx={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
-                <Typography variant="subtitle1">This month</Typography>
+                <Typography variant="subtitle1">{title}</Typography>
                 <InsertChartOutlined />
               </Box>
               <Typography variant="h4">$37.5K</Typography>
