@@ -4,11 +4,9 @@ import Metrics from './Components/Dashboard/Metrics';
 export default function Home() {
   return (
     <div >
-      <Headers />
+      <Headers route={"main-dashboard"} title={"Main Dashboard"} />
       <HomeCards/>
       <Metrics/>
-    </div>
+</div>
   );
-
-
 }
