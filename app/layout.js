@@ -1,7 +1,9 @@
+// import './globals.css'
+import { Inter } from 'next/font/google'
 import { Grid } from "@mui/material";
 import Sidebar from "./components/sidebar/Sidebar";
 import "./globals.css";
-import { Inter } from "next/font/google";
+
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -19,7 +21,9 @@ export default function RootLayout({ children }) {
             <Sidebar />
           </Grid>
           <Grid item xs={12} md={9}>
+            <div style={{ background: "#f4f8fe" }}>
             {children}
+            </div>
           </Grid>
         </Grid>
       </body>
