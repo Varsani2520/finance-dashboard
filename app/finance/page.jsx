@@ -2,9 +2,9 @@
 
 // pages/finance.js
 import React, { useEffect, useState } from 'react';
-import BasicBreadcrumbs from '../components/Headers';
 import { Box, Typography, Card, CardContent, Grid } from '@mui/material';
 import { fetchStockData } from '../utils/fetchStockData';
+import BasicBreadcrumbs from '../Components/Dashboard/Headers';
 
 const symbols = ['AAPL', 'TSLA', 'AMZN', 'GOOGL', 'MSFT', 'FB', 'NFLX', 'NVDA', 'PYPL', 'INTC']; // Example: 10 symbols
 
