@@ -1,12 +1,8 @@
-"use client";
-import * as React from "react";
-import Typography from "@mui/material/Typography";
-import Breadcrumbs from "@mui/material/Breadcrumbs";
-import Link from "@mui/material/Link";
 import {
   Box,
   Drawer,
   IconButton,
+  Link,
   List,
   ListItem,
   ListItemIcon,
@@ -20,6 +16,11 @@ import {
   TrendingUp,
 } from "@mui/icons-material";
 import Sidebar from "../sidebar/Sidebar";
+
+import * as React from "react";
+import Typography from "@mui/material/Typography";
+import Breadcrumbs from "@mui/material/Breadcrumbs";
+import Button from "@mui/material/Button";
 
 export default function BasicBreadcrumbs({ title, route }) {
   const theme = useTheme();
@@ -56,9 +57,7 @@ export default function BasicBreadcrumbs({ title, route }) {
             underline="hover"
             href="/#"
             sx={{ color: theme.palette.background.headline }}
-          >
-            Pages
-          </Link>
+          ></Link>
           <Link
             underline="hover"
             sx={{ color: theme.palette.background.headline }}
@@ -105,6 +104,9 @@ export default function BasicBreadcrumbs({ title, route }) {
           </List>
         </Box>
       </Drawer>
+      <Button variant="contained" color="primary" href="/login">
+        Login
+      </Button>
     </div>
   );
 }

@@ -1,5 +1,5 @@
 "use client";
-
+import { StoreProvider } from './Redux/storeProvider';
 import { Inter } from "next/font/google";
 import { Grid, ThemeProvider } from "@mui/material";
 import "./globals.css";
@@ -22,6 +22,8 @@ export default function RootLayout({ children }) {
   return (
     <html lang="en">
       <body className={inter.className}>
+        <StoreProvider>
+
         <ThemeProvider theme={isDarkTheme ? darkTheme : lightTheme}>
           <Grid container>
             <Grid item xs={12} md={3}>
@@ -32,6 +34,7 @@ export default function RootLayout({ children }) {
             </Grid>
           </Grid>
         </ThemeProvider>
+</StoreProvider>
       </body>
     </html>
   );
