@@ -21,6 +21,7 @@ import Link from "next/link";
 import { logoutuser } from "@/app/Redux/action/action";
 import { useDispatch, useSelector } from "react-redux";
 import { toast } from "react-toastify";
+import Cookies from "js-cookie";
 
 const Sidebar = ({ toggleTheme, darkMode }) => {
   const [activeItem, setActiveItem] = useState("home");
