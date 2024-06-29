@@ -1,17 +1,19 @@
-import mongoose from "mongoose";
+// models/signupUser.js
+import mongoose from 'mongoose';
 
-const signupuserModal = new mongoose.Schema({
-  password: String,
+const signupUserSchema = new mongoose.Schema({
   username: {
     type: String,
     unique: true,
-    required: [true, "email required"],
+    required: [true, 'Username is required'],
+  },
+  password: {
+    type: String,
+    required: [true, 'Password is required'],
   },
   name: String,
   address: String,
   token: String,
 });
 
-// modal
-export const signupUser =
-  mongoose.models.signup || mongoose.model("signup", signupuserModal);
+export const signupUser = mongoose.models.signupUser || mongoose.model('signupUser', signupUserSchema);

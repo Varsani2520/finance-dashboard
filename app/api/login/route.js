@@ -1,9 +1,10 @@
 import { connectDatabase } from "@/app/database/db";
 import { NextResponse } from "next/server";
 import bcrypt from "bcryptjs";
-import { signupUser } from "@/app/modal/signupUser";
-connectDatabase();
+import { signupUser } from "@/app/models/signupUser";
+
 export async function POST(request) {
+  await connectDatabase();
   const { username, password } = await request.json();
   try {
     const user = await signupUser.findOne({ username });
@@ -27,3 +28,4 @@ export async function POST(request) {
     });
   }
 }
+
