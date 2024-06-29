@@ -66,7 +66,7 @@ const Page = () => {
           </Typography>
         ) : (
           <Grid container spacing={4} px={4}>
-            {stockData.slice(0, 4).map((stock, index) => (
+            {stockData && stockData.slice(0, 4).map((stock, index) => (
               <Grid item xs={12} sm={6} md={3} key={index}>
                 <Card sx={{bgcolor: theme.palette.background.card}} className="shadow-lg transition-transform transform hover:scale-105">
                   <CardContent>
@@ -154,7 +154,7 @@ export const TableDataStocks = ({ isHome }) => {
           </TableRow>
         </TableHead>
         <TableBody>
-          {stockData.map((stock, index) => (
+          {stockData && stockData.map((stock, index) => (
             <TableRow key={index}>
               <TableCell>{symbols[index]}</TableCell>
               <TableCell align="right">${stock && stock.c}</TableCell>
