@@ -13,6 +13,7 @@ import loginAnimation from "../../lottie-animation/login.json";
 import Toast from "../Toast";
 import Cookies from "js-cookie";
 import { loginUserFailure, loginUserSuccess } from "@/app/Redux/action/action";
+import { loginservice } from "@/app/utils/services/loginService";
 
 const LoginPage = () => {
   const dispatch = useDispatch();
@@ -46,13 +47,14 @@ const LoginPage = () => {
     }
   };
 
+
   return (
-    <Container>
-      <div style={{ paddingTop: "100px",paddingBottom: "180px",  }}>
+    <>
+      <div style={{ paddingTop: "150px",paddingBottom: "180px", background: theme.palette.background.page }} className="min-h-screen">
         <Toast />
         <Grid container spacing={2} sx={{ justifyContent: 'center' }}>
           <Grid item xs={12} md={6}>
-            <Box sx={{ display: { xs: "none", md: "block" } }}>
+            <Box sx={{ display: { xs: "none", md: "block" }, }}>
               <Lottie animationData={loginAnimation} style={{ height: '500px' }} />
             </Box>
           </Grid>
@@ -66,17 +68,8 @@ const LoginPage = () => {
               justifyContent: "center",
             }}
           >
-            {/* <Paper
-            sx={{
-              padding: 4,
-              maxWidth: 400,
-              width: "100%",
-              backgroundColor: "white",
-              borderRadius: 8,
-            }}
-          > */}
             <form onSubmit={handleSubmit}>
-              <Typography variant="h5" align="center" >
+              <Typography sx={{color: theme.palette.background.headline}} variant="h5" align="center" >
                 Login
               </Typography>
               <TextField
@@ -112,7 +105,6 @@ const LoginPage = () => {
                 fullWidth
                 sx={{
                   mt: 2,
-
                   background: theme.palette.background.button,
                   "&:hover": { backgroundColor: "#0069d9" },
                   color: theme.palette.background.text,
@@ -120,14 +112,14 @@ const LoginPage = () => {
               >
                 Login
               </Button>
-              <Typography align="center" sx={{ mt: 2, mr: 2 }}>
+              <Typography align="center" sx={{ mt: 2, mr: 2, color: theme.palette.background.headline }}>
                 Don't have an account? <Link href="/signup">Sign up</Link>
               </Typography>
             </form>
           </Grid>
         </Grid>
       </div>
-    </Container>
+    </>
   );
 };
 
