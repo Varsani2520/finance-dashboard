@@ -2,7 +2,7 @@ import mongoose from 'mongoose';
 
 export const connectDatabase = async () => {
   try {
-    mongoose.connect("mongodb+srv://dhruv:dhruv@cluster0.lcgi7sy.mongodb.net/", {
+    mongoose.connect(process.env.MONGO_URI, {
       dbName: "finance-dashboard",
       serverSelectionTimeoutMS: 50000
     });

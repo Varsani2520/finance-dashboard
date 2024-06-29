@@ -6,10 +6,13 @@ The Finance Dashboard is a comprehensive web application designed to help users 
 
 ## Features
 
+Open [http://localhost:8000](http://localhost:8000) with your browser to see the result.
+
 - **User Authentication**: Secure login and logout functionality powered by Redux.
 - **Real-Time Stock Prices**: View current stock prices with live updates.
 - **Graph Information**: Visualize stock data through detailed and interactive graphs.
 - **Responsive Design**: Optimized for both desktop and mobile devices.
+
 
 ## Installation
 
