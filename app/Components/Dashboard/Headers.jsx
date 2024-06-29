@@ -1,4 +1,4 @@
-'use client';
+"use client";
 
 import {
   Box,
@@ -13,6 +13,7 @@ import {
   ListItemText,
   Button,
   useTheme,
+  Avatar,
 } from "@mui/material";
 import {
   AttachMoney,
@@ -22,22 +23,43 @@ import {
 } from "@mui/icons-material";
 
 import * as React from "react";
+import { useSelector } from "react-redux";
 
 export default function BasicBreadcrumbs({ title, route }) {
   const theme = useTheme();
   const [drawerOpen, setDrawerOpen] = React.useState(false);
   const [activeItem, setActiveItem] = React.useState("home");
-  
+
   const menuItems = [
     { name: "home", icon: <Home />, label: "Home", route: "/" },
-    { name: "trending", icon: <TrendingUp />, label: "Trending", route: "/trending" },
-    { name: "finance", icon: <AttachMoney />, label: "Finance", route: "/finance" },
+    {
+      name: "trending",
+      icon: <TrendingUp />,
+      label: "Trending",
+      route: "/trending",
+    },
+    {
+      name: "finance",
+      icon: <AttachMoney />,
+      label: "Finance",
+      route: "/finance",
+    },
   ];
+
+  const user = useSelector((state) => state.auth.message);
+  let userInfo = user ? useSelector((state) => state.auth.authUser.data.username) : "";
+
+  console.log(userInfo);
 
   return (
     <div
       role="presentation"
-      style={{ padding: "40px", display: "flex", justifyContent: "space-between", alignItems: "center" }}
+      style={{
+        padding: "40px",
+        display: "flex",
+        justifyContent: "space-between",
+        alignItems: "center",
+      }}
     >
       <div className="flex flex-col">
         <Box display={{ xs: "block", md: "none" }} mb={2}>
@@ -68,10 +90,17 @@ export default function BasicBreadcrumbs({ title, route }) {
           {title}
         </Typography>
       </div>
-      
-      <Button variant="contained" color="primary" href="/login">
-        Login
-      </Button>
+
+      {user ? (
+        <div className="flex items-center">
+          <h1 className="font-semibold mr-2 text-teal-500">{user && userInfo}</h1>
+          <Avatar />
+        </div>
+      ) : (
+        <Button variant="contained" color="primary" href="/login">
+          Login
+        </Button>
+      )}
 
       <Drawer open={drawerOpen} onClose={() => setDrawerOpen(false)}>
         <Box width={300} bgcolor={theme.palette.background.slider}>
