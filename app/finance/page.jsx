@@ -1,17 +1,10 @@
 "use client";
 
-// pages/finance.js
-import React, { useEffect, useState } from "react";
-import {
-  Box,
-  Typography,
-  Card,
-  CardContent,
-  Grid,
-  useTheme,
-} from "@mui/material";
-import { fetchStockData } from "../utils/fetchStockData";
-import BasicBreadcrumbs from "../components/Dashboard/Headers";
+
+import React, { useEffect, useState } from 'react';
+import { Box, Typography, Card, CardContent, Grid, useTheme } from '@mui/material';
+import { fetchStockData } from '../utils/fetchStockData';
+import BasicBreadcrumbs from '../Components/Dashboard/Headers';
 
 const symbols = [
   "AAPL",

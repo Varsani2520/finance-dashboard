@@ -1,34 +1,9 @@
-"use client";
-import * as React from "react";
-import {
-  Grid,
-  Card,
-  CardContent,
-  Typography,
-  Box,
-  useTheme,
-} from "@mui/material";
-import {
-  LineChart,
-  Line,
-  XAxis,
-  YAxis,
-  CartesianGrid,
-  Tooltip,
-  ResponsiveContainer,
-  BarChart,
-  Bar,
-} from "recharts";
-import { InsertChartOutlined } from "@mui/icons-material";
-
-const data = [
-  { name: "SEP", uv: 4000, pv: 2400, amt: 2400 },
-  { name: "OCT", uv: 3000, pv: 1398, amt: 2210 },
-  { name: "NOV", uv: 2000, pv: 9800, amt: 2290 },
-  { name: "DEC", uv: 2780, pv: 3908, amt: 2000 },
-  { name: "JAN", uv: 1890, pv: 4800, amt: 2181 },
-  { name: "FEB", uv: 2390, pv: 3800, amt: 2500 },
-];
+'use client'
+import * as React from 'react';
+import { Grid, Card, CardContent, Typography, Box, useTheme } from '@mui/material';
+import { LineChart, Line, XAxis, YAxis, CartesianGrid, Tooltip, ResponsiveContainer, BarChart, Bar } from 'recharts';
+import { InsertChartOutlined } from '@mui/icons-material';
+import { fetchChartData } from '@/app/utils/fetchChartsData';
 
 const barData = [
   { name: "17", uv: 4000, pv: 2400, amt: 2400 },
@@ -43,6 +18,25 @@ const barData = [
 export default function Metrics({ title }) {
   const theme = useTheme();
 
+  const [data, setData] = React.useState([]);
+  const getData = async () => {
+    const chartData = await fetchChartData();
+
+    console.log('charts',chartData);
+    if (chartData) {
+      const transformedData = chartData.map(item => ({
+        date: item.date,
+        uv: item.close,
+        pv: item.standardDeviation,
+      }));
+      setData(transformedData);
+      console.log("tr",transformedData)
+    }
+  };
+  React.useEffect(() => {
+    
+    getData();
+  }, []);
   return (
     <Box sx={{ flexGrow: 1, p: 3 }}>
       <Grid container spacing={3}>
@@ -60,17 +54,13 @@ export default function Metrics({ title }) {
                 <Typography variant="subtitle1">{title}</Typography>
                 <InsertChartOutlined />
               </Box>
-              <Typography variant="h4">$37.5K</Typography>
-              <Typography variant="subtitle2" color="green">
-                +2.45%
-              </Typography>
-              <Typography variant="body2" color="textSecondary">
-                On track
-              </Typography>
+              <Typography variant="h4">AMAZON</Typography>
+              {/* <Typography variant="subtitle2" color="green">+2.45%</Typography> */}
+              <Typography variant="body2" color="textSecondary">On track</Typography>
               <ResponsiveContainer width="100%" height={200}>
                 <LineChart data={data}>
                   <CartesianGrid strokeDasharray="3 3" />
-                  <XAxis dataKey="name" />
+                  <XAxis dataKey="date" />
                   <YAxis />
                   <Tooltip />
                   <Line type="monotone" dataKey="uv" stroke="#8884d8" />
@@ -96,7 +86,7 @@ export default function Metrics({ title }) {
                 <InsertChartOutlined />
               </Box>
               <ResponsiveContainer width="100%" height={280}>
-                <BarChart data={barData}>
+                <BarChart data={data}>
                   <CartesianGrid strokeDasharray="3 3" />
                   <XAxis dataKey="name" />
                   <YAxis />
