@@ -47,7 +47,7 @@ export default function BasicBreadcrumbs({ title, route }) {
   ];
 
   const user = useSelector((state) => state.auth.message);
-  let userInfo = user ? useSelector((state) => state.auth.authUser.data.username) : "";
+  let userInfo = user === true ? useSelector((state) => state.auth.authUser.data.username) : "";
 
   console.log(userInfo);
 
