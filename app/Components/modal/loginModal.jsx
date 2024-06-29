@@ -50,11 +50,11 @@ const LoginPage = () => {
 
   return (
     <>
-      <div style={{ paddingTop: "150px",paddingBottom: "180px", background: theme.palette.background.page }} className="min-h-screen">
+      <div style={{ paddingTop: "150px",paddingBottom: "180px", background: theme.palette.background.page }} className="min-h-screen px-20">
         <Toast />
         <Grid container spacing={2} sx={{ justifyContent: 'center' }}>
           <Grid item xs={12} md={6}>
-            <Box sx={{ display: { xs: "none", md: "block" }, }}>
+            <Box>
               <Lottie animationData={loginAnimation} style={{ height: '500px' }} />
             </Box>
           </Grid>
