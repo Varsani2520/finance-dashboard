@@ -42,7 +42,7 @@ const Sidebar = ({ toggleTheme, darkMode }) => {
   return (
     <>
       <Box
-        sx={{ display: { xs: "none", md: "block" }, backgroundColor: theme.palette.background.paper }}
+        sx={{ display: { xs: "none", md: "block" }, backgroundColor: theme.palette.background.sidebar }}
         className="h-full border-r"
       >
         <Box className="flex items-center justify-between p-4">

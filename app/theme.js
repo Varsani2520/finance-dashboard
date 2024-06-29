@@ -14,15 +14,16 @@ const darkTheme = createTheme({
       main: "#1b3145", // Dark mode secondary color
     },
     background: {
-      card: "#041c32",
+      card: "#111c44",
       text: "#ffffff",
       icon: "#ffffff", //white icon
       button: "#0277fa",
       c1: "#fff",
       c2: "#fff",
       headline: "#fff",
-      page: "#000",
-      icons: "#696969"
+      page: "#0b1437",
+      icons: "#696969",
+      sidebar: "#111c44"
     },
   },
 });
@@ -38,7 +39,7 @@ const lightTheme = createTheme({
       main: "#ffffff", // Light mode secondary color
     },
     background: {
-      card: "#a4c8eb",
+      card: "#ffffff",
       text: "#000000",
       icon: "#2a78d4",
       button: "#0277fa",
@@ -46,7 +47,8 @@ const lightTheme = createTheme({
       c2: "#666",
       headline: "#000",
       page: "#f4f8fe",
-      icons: "#f4f7fe"
+      icons: "#f4f7fe",
+      sidebar: "#fff"
     },
   },
 });

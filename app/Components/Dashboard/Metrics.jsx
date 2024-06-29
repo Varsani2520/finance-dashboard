@@ -42,13 +42,14 @@ export default function Metrics({ title }) {
       <Grid container spacing={3}>
         {/* Card 1 */}
         <Grid item xs={12} md={6}>
-          <Card sx={{ borderRadius: 2 }}>
+          <Card sx={{ borderRadius: 2, backgroundColor: theme.palette.background.card }}>
             <CardContent>
               <Box
                 sx={{
                   display: "flex",
                   justifyContent: "space-between",
                   alignItems: "center",
+                  
                 }}
               >
                 <Typography variant="subtitle1">{title}</Typography>
@@ -73,7 +74,7 @@ export default function Metrics({ title }) {
 
         {/* Card 2 */}
         <Grid item xs={12} md={6}>
-          <Card sx={{ borderRadius: 2 }}>
+          <Card sx={{ borderRadius: 2,backgroundColor: theme.palette.background.card, }}>
             <CardContent>
               <Box
                 sx={{

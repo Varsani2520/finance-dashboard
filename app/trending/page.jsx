@@ -119,9 +119,12 @@ export const TableDataStocks = ({ isHome }) => {
 
     return () => clearInterval(interval); // Cleanup on unmount
   }, []);
+
+  const theme = useTheme();
+
   return (
     <TableContainer component={Paper} className="mt-8">
-      <Table>
+      <Table sx={{backgroundColor: theme.palette.background.card}}>
         <TableHead>
           <TableRow>
             <TableCell
