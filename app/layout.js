@@ -3,6 +3,7 @@ import { Inter } from 'next/font/google'
 import { Grid } from "@mui/material";
 import Sidebar from "./components/sidebar/Sidebar";
 import "./globals.css";
+import { StoreProvider } from './Redux/storeProvider';
 
 
 const inter = Inter({ subsets: ["latin"] });
@@ -16,6 +17,8 @@ export default function RootLayout({ children }) {
   return (
     <html lang="en">
       <body className={inter.className}>
+        <StoreProvider>
+
         <Grid container>
           <Grid item xs={12} md={3}>
             <Sidebar />
@@ -26,6 +29,7 @@ export default function RootLayout({ children }) {
             </div>
           </Grid>
         </Grid>
+        </StoreProvider>
       </body>
     </html>
   );
