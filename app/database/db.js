@@ -1,13 +1,15 @@
-import mongoose from "mongoose";
+// db.js
+import mongoose from 'mongoose';
 
-export const connectDatabase = () => {
+export const connectDatabase = async () => {
   try {
-    mongoose.connect("mongodb+srv://partners2520:partners2520@cluster0.ehddzbb.mongodb.net/" ,{
+    mongoose.connect("mongodb+srv://dhruv:dhruv@cluster0.lcgi7sy.mongodb.net/", {
       dbName: "finance-dashboard",
+      serverSelectionTimeoutMS: 50000
     });
-    console.log("database connected successfully");
+    console.log('Database connected successfully');
   } catch (error) {
-    console.log("not connect database");
-    console.log(error);
+    console.error('Database connection error:', error);
+    throw error;
   }
 };
