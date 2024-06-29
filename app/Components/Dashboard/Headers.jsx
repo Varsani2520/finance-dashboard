@@ -23,31 +23,22 @@ import {
 
 import * as React from "react";
 
-
 export default function BasicBreadcrumbs({ title, route }) {
-    const theme = useTheme();
-
+  const theme = useTheme();
   const [drawerOpen, setDrawerOpen] = React.useState(false);
-
   const [activeItem, setActiveItem] = React.useState("home");
+  
   const menuItems = [
     { name: "home", icon: <Home />, label: "Home", route: "/" },
-    {
-      name: "trending",
-      icon: <TrendingUp />,
-      label: "Trending",
-      route: "/trending",
-    },
-    {
-      name: "finance",
-      icon: <AttachMoney />,
-      label: "Finance",
-      route: "/finance",
-    },
+    { name: "trending", icon: <TrendingUp />, label: "Trending", route: "/trending" },
+    { name: "finance", icon: <AttachMoney />, label: "Finance", route: "/finance" },
   ];
 
   return (
-    <div role="presentation" style={{ padding: "40px" }}>
+    <div
+      role="presentation"
+      style={{ padding: "40px", display: "flex", justifyContent: "space-between", alignItems: "center" }}
+    >
       <div className="flex flex-col">
         <Box display={{ xs: "block", md: "none" }} mb={2}>
           <IconButton onClick={() => setDrawerOpen(true)}>
@@ -59,12 +50,13 @@ export default function BasicBreadcrumbs({ title, route }) {
             underline="hover"
             href="/#"
             sx={{ color: theme.palette.background.headline }}
-          ></Link>
+          >
+            Pages
+          </Link>
           <Link
             underline="hover"
             sx={{ color: theme.palette.background.headline }}
             href={`/${route === "main-dashboard" ? "/" : route}`}
-
           >
             {route}
           </Link>
@@ -76,6 +68,11 @@ export default function BasicBreadcrumbs({ title, route }) {
           {title}
         </Typography>
       </div>
+      
+      <Button variant="contained" color="primary" href="/login">
+        Login
+      </Button>
+
       <Drawer open={drawerOpen} onClose={() => setDrawerOpen(false)}>
         <Box width={300} bgcolor={theme.palette.background.slider}>
           <Box className="flex items-center justify-between p-4">
@@ -106,9 +103,6 @@ export default function BasicBreadcrumbs({ title, route }) {
           </List>
         </Box>
       </Drawer>
-      <Button variant="contained" color="primary" href="/login">
-        Login
-      </Button>
     </div>
   );
 }
