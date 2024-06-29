@@ -17,10 +17,7 @@
     "@reduxjs/toolkit": "^2.2.5",
     "autoprefixer": "10.4.19",
     "axios": "^1.7.2",
-<<<<<<< HEAD
     "bcrypt": "^5.1.1",
-=======
->>>>>>> 46c53f9647557f793d4a66ac26b7cf42b2b56984
     "bcryptjs": "^2.4.3",
     "chart.js": "^4.4.3",
     "dotenv": "^16.4.5",
