@@ -14,6 +14,7 @@ import {
   TableRow,
   Paper,
   Grid,
+  useTheme,
 } from "@mui/material";
 import { fetchStockData } from "../utils/fetchStockData";
 import BasicBreadcrumbs from "../Components/Dashboard/Headers";
@@ -53,31 +54,33 @@ const Page = () => {
     return () => clearInterval(interval); // Cleanup on unmount
   }, []);
 
+  const theme = useTheme();
+
   return (
-    <>
-      <BasicBreadcrumbs route={"trending"} title={"Trending Stocks"} />
-      <Box className="px-8">
+    <Box className="px-8" bgcolor={theme.palette.background.page}>
+      <>
+        <BasicBreadcrumbs route={"trending"} title={"Trending Stocks"} />
         {loading ? (
           <Typography variant="h6" className="text-center">
             Updating...
           </Typography>
         ) : (
-          <Grid container spacing={4}>
+          <Grid container spacing={4} px={4}>
             {stockData.slice(0, 4).map((stock, index) => (
               <Grid item xs={12} sm={6} md={3} key={index}>
-                <Card className="bg-white shadow-lg transition-transform transform hover:scale-105">
+                <Card sx={{bgcolor: theme.palette.background.card}} className="shadow-lg transition-transform transform hover:scale-105">
                   <CardContent>
                     <Typography variant="h5" className="font-semibold">
                       {symbols[index]}
                     </Typography>
                     <Typography variant="h6" className="mt-2">
-                      ${stock.c}
+                      ${stock && stock.c}
                     </Typography>
                     <Typography
                       variant="body2"
-                      color={stock.d >= 0 ? "green" : "red"}
+                      color={stock && stock.d >= 0 ? "green" : "red"}
                     >
-                      {stock.d >= 0 ? `+${stock.d}` : stock.d} ({stock.dp}%)
+                      {stock && stock.d >= 0 ? `+${stock.d}` : stock.d} ({stock.dp}%)
                     </Typography>
                   </CardContent>
                 </Card>
@@ -85,11 +88,11 @@ const Page = () => {
             ))}
           </Grid>
         )}
-      </Box>
-      <Box p={{ xs: 0, md: 4 }}>
-        <TableDataStocks />
-      </Box>
-    </>
+        <Box p={{ xs: 0, md: 4 }}>
+          <TableDataStocks />
+        </Box>
+      </>
+    </Box>
   );
 };
 
@@ -151,7 +154,7 @@ export const TableDataStocks = ({ isHome }) => {
           {stockData.map((stock, index) => (
             <TableRow key={index}>
               <TableCell>{symbols[index]}</TableCell>
-              <TableCell align="right">${stock.c}</TableCell>
+              <TableCell align="right">${stock && stock.c}</TableCell>
               <TableCell
                 align="right"
                 className={stock.d >= 0 ? "text-green-500" : "text-red-500"}

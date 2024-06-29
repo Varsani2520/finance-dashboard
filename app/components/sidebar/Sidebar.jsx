@@ -1,6 +1,5 @@
 "use client";
 
-// components/Sidebar.js
 import { useState } from "react";
 import {
   Box,
@@ -9,6 +8,7 @@ import {
   ListItem,
   ListItemIcon,
   ListItemText,
+  useTheme,
 } from "@mui/material";
 import {
   Home,
@@ -17,19 +17,10 @@ import {
   Brightness4,
   Brightness7,
 } from "@mui/icons-material";
-import { useTheme, ThemeProvider, createTheme } from "@mui/material/styles";
-import { CssBaseline } from "@mui/material";
 import Link from "next/link";
 
-const Sidebar = () => {
+const Sidebar = ({ toggleTheme, darkMode }) => {
   const [activeItem, setActiveItem] = useState("home");
-  const [darkMode, setDarkMode] = useState(false);
-  const theme = createTheme({
-    palette: {
-      mode: darkMode ? "dark" : "light",
-    },
-  });
-
   const menuItems = [
     { name: "home", icon: <Home />, label: "Home", route: "/" },
     {
@@ -46,17 +37,17 @@ const Sidebar = () => {
     },
   ];
 
-  const handleThemeChange = () => {
-    setDarkMode(!darkMode);
-  };
+  const theme = useTheme();
 
   return (
-    <ThemeProvider theme={theme}>
-      <CssBaseline />
-      <Box sx={{display: {xs: "none", md: "block"}}} className="h-screen border-r">
+    <>
+      <Box
+        sx={{ display: { xs: "none", md: "block" }, backgroundColor: theme.palette.background.paper }}
+        className="h-full border-r"
+      >
         <Box className="flex items-center justify-between p-4">
-          <span className="text-lg font-bold">Finance Dashboard</span>
-          <IconButton onClick={handleThemeChange}>
+          <span className="text-2xl font-bold" style={{color: theme.palette.background.headline}}>Finance Dashboard</span>
+          <IconButton onClick={toggleTheme}>
             {darkMode ? <Brightness7 /> : <Brightness4 />}
           </IconButton>
         </Box>
@@ -65,6 +56,7 @@ const Sidebar = () => {
             <Link key={item.name} href={item.route}>
               <ListItem
                 button
+                sx={{color: theme.palette.background.headline}}
                 onClick={() => setActiveItem(item.name)}
                 className={`p-4 rounded-lg hover:bg-teal-300 my-2 ${
                   activeItem === item.name ? "bg-teal-500" : "bg-transparent"
@@ -77,7 +69,7 @@ const Sidebar = () => {
           ))}
         </List>
       </Box>
-    </ThemeProvider>
+    </>
   );
 };
 
