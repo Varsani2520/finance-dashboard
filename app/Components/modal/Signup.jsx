@@ -53,7 +53,7 @@ const SignUp = () => {
         <ToastContainer />
         <Grid container spacing={2}>
           <Grid item xs={12} md={6}>
-            <Box sx={{ display: { xs: "none", md: "block" } }}>
+            <Box>
               <Lottie animationData={loginAnimation} style={{ height: '500px' }} />
             </Box>
           </Grid>
