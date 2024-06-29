@@ -15,7 +15,6 @@ import {
   MenuRounded,
   TrendingUp,
 } from "@mui/icons-material";
-import Sidebar from "../sidebar/Sidebar";
 
 import * as React from "react";
 import Typography from "@mui/material/Typography";
