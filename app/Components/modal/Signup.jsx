@@ -41,15 +41,15 @@ const SignUp = () => {
       );
       console.log(response);
       toast.success("Account Created Successfully");
-      router.push("/pages/login");
+      router.push("/login");
     } catch (error) {
       toast.error("Failed to Create Account");
       console.log(error);
     }
   }
   return (
-    <Container>
-      <div style={{ paddingTop: "100px", paddingBottom: "180px", color: theme.palette.background.text,  }}>
+    <>
+      <div className="min-h-screen px-20" style={{ paddingTop: "150px", paddingBottom: "180px", color: theme.palette.background.text, background: theme.palette.background.page }}>
         <ToastContainer />
         <Grid container spacing={2}>
           <Grid item xs={12} md={6}>
@@ -156,7 +156,7 @@ const SignUp = () => {
           </Grid>
         </Grid>
       </div>
-    </Container>
+    </>
   );
 };
 
