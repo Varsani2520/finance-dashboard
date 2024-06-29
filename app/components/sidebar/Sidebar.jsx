@@ -48,6 +48,7 @@ const Sidebar = ({ toggleTheme, darkMode }) => {
 
   const Logout = () => {
     dispatch(logoutuser());
+    Cookies.remove("user");
     toast.success("Successfully logged out");
   };
 
