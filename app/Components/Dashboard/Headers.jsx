@@ -21,7 +21,6 @@ import {
   MenuRounded,
   TrendingUp,
 } from "@mui/icons-material";
-
 import * as React from "react";
 import { useSelector } from "react-redux";
 
@@ -47,7 +46,9 @@ export default function BasicBreadcrumbs({ title, route }) {
   ];
 
   const user = useSelector((state) => state.auth.message);
-  let userInfo = user === true ? useSelector((state) => state.auth.authUser.data.username) : "";
+  const userInfo = useSelector((state) =>
+    state.auth.message ? state.auth.authUser.data.username : ""
+  );
 
   console.log(userInfo);
 
@@ -93,7 +94,7 @@ export default function BasicBreadcrumbs({ title, route }) {
 
       {user ? (
         <div className="flex items-center">
-          <h1 className="font-semibold mr-2 text-teal-500">{user && userInfo}</h1>
+          <h1 className="font-semibold mr-2 text-teal-500">{userInfo}</h1>
           <Avatar />
         </div>
       ) : (
