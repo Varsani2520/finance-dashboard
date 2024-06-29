@@ -1,6 +1,6 @@
 'use client'
 import * as React from 'react';
-import { Grid, Card, CardContent, Typography, Box } from '@mui/material';
+import { Grid, Card, CardContent, Typography, Box, useTheme } from '@mui/material';
 import { MonetizationOn, AttachMoney, ShoppingCart, AccountBalance } from '@mui/icons-material';
 
 const cardData = [
@@ -11,13 +11,16 @@ const cardData = [
 ];
 
 export default function HomeCards() {
+
+  const theme = useTheme();
+
   return (
     <Box sx={{ flexGrow: 1, p: 3 }}>
       <Grid container spacing={3}>
         {cardData.map((card, index) => (
           <Grid item xs={12} sm={4} md={3} key={index}>
-            <Card sx={{ display: 'flex', alignItems: 'center', backgroundColor: 'white',borderRadius:'10px' }}>
-              <Box sx={{ p: 2, borderRadius: '50%', backgroundColor: '#f4f7fe', ml: 2 }}>
+            <Card sx={{ display: 'flex', alignItems: 'center', backgroundColor: theme.palette.background.card,borderRadius:'10px' }}>
+              <Box sx={{ p: 2, borderRadius: '50%', backgroundColor: theme.palette.background.icons, ml: 2 }}>
                 {card.icon}
               </Box>
               <CardContent>

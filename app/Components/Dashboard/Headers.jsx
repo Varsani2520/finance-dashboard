@@ -6,6 +6,8 @@ import Link from '@mui/material/Link';
 import Button from '@mui/material/Button';
 
 export default function BasicBreadcrumbs({ title, route }) {
+    const theme = useTheme();
+
   return (
     <div role="presentation" style={{ padding: '40px', display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
       <div>
