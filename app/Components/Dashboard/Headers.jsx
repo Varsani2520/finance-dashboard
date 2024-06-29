@@ -23,7 +23,7 @@ import Breadcrumbs from "@mui/material/Breadcrumbs";
 import Button from "@mui/material/Button";
 
 export default function BasicBreadcrumbs({ title, route }) {
-  const theme = useTheme();
+    const theme = useTheme();
 
   const [drawerOpen, setDrawerOpen] = React.useState(false);
 
@@ -62,6 +62,7 @@ export default function BasicBreadcrumbs({ title, route }) {
             underline="hover"
             sx={{ color: theme.palette.background.headline }}
             href={`/${route === "main-dashboard" ? "/" : route}`}
+
           >
             {route}
           </Link>
@@ -73,7 +74,6 @@ export default function BasicBreadcrumbs({ title, route }) {
           {title}
         </Typography>
       </div>
-
       <Drawer open={drawerOpen} onClose={() => setDrawerOpen(false)}>
         <Box width={300} bgcolor={theme.palette.background.slider}>
           <Box className="flex items-center justify-between p-4">
